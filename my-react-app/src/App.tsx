@@ -29,6 +29,12 @@ export interface UnsplashImage {
   likes?: number;
 }
 
+export interface UnsplashApiResponse {
+  results: UnsplashImage[];
+  total: number;
+  total_pages: number;
+}
+
 interface AppState {
   searchQuery: string;
   images: UnsplashImage[];
@@ -65,7 +71,7 @@ const App: React.FC = () => {
     const fetchImages = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(
+        const response = await axios.get<UnsplashApiResponse>(
           "https://api.unsplash.com/search/photos",
           {
             params: {
@@ -117,6 +123,7 @@ const App: React.FC = () => {
   return (
     <div>
       <Toaster position="top-center" reverseOrder={false} />
+
       <SearchBar onSubmit={handleSearch} />
 
       {error && <ErrorMessage message={error} />}
