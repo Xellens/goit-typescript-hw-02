@@ -1,0 +1,17 @@
+.card {
+  cursor: pointer;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
